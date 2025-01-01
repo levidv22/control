@@ -26,6 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
         // Limpia los botones actuales
         pagination.innerHTML = '';
 
+
+        // Botón "primera página"
+        const firstButton = document.createElement('li');
+        firstButton.className = `page-item ${page === 1 ? 'disabled' : ''}`;
+        firstButton.innerHTML = `<button class="page-link">&laquo;</button>`; // Botón <<
+        firstButton.addEventListener('click', () => {
+            if (page > 1)
+                showPage(1); // Ir a la primera página
+        });
+        pagination.appendChild(firstButton);
+
         // Botón "anterior"
         const prevButton = document.createElement('li');
         prevButton.className = `page-item ${page === 1 ? 'disabled' : ''}`;
@@ -96,6 +107,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 showPage(page + 1);
         });
         pagination.appendChild(nextButton);
+
+        // Botón "última página"
+        const lastButton = document.createElement('li');
+        lastButton.className = `page-item ${page === totalPages ? 'disabled' : ''}`;
+        lastButton.innerHTML = `<button class="page-link">&raquo;</button>`; // Botón >>
+        lastButton.addEventListener('click', () => {
+            if (page < totalPages)
+                showPage(totalPages); // Ir a la última página
+        });
+        pagination.appendChild(lastButton);
     }
 
     if (totalPages > 1) {
