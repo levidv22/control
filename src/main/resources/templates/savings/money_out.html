@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{savings/header::head}"></head>
+    <body>
+        <div th:insert="~{savings/header::header}"></div>
+        <div class="container mt-5">
+            <h1 class="burn">LISTADO DE GASTOS</h1>
+            <div class="row mt-4">
+                <div class="col-md-10">
+                    <!-- Mostrar mensaje de error si el monto supera los ahorros -->
+                    <div th:if="${errorMessage}" class="alert alert-danger">
+                        <p th:text="${errorMessage}"></p>
+                    </div>                    <div class="table-responsive">
+                        <table class="table table-hover align-middle" id="savingsTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Monto</th>
+                                    <th>Motivo</th>
+                                    <th>Tipo</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="expense : ${moneyOuts}">
+                                    <td th:text="${expense.id}"></td>
+                                    <td th:text="${expense.amount} + ' Soles'"></td>
+                                    <td th:text="${expense.description}">Motivo</td>
+                                    <td th:text="${expense.tipo}">Tipo</td>
+                                    <td th:text="${expense.formattedFecha}">Fecha</td>
+                                    <td>
+                                        <a th:href="@{'/money-out/edit/' + ${expense.id}}" 
+                                           class="btn btn-outline-warning btn-sm">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                        <a th:href="@{'/money-out/delete/' + ${expense.id}}" 
+                                           class="btn btn-outline-danger btn-sm" 
+                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este gasto?');">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination Controls -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center" id="pagination">
+                            <!-- JavaScript will dynamically generate pagination controls here -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-2">
+                    <!--<div class="card mb-4">
+                        <div class="card-body">
+                            <h5>Ahorros:</h5>
+                            <p class="fw-bold text-primary fs-4" th:text="${totalSavings} + ' Soles'">0.00 Soles</p>
+                        </div>
+                    </div>-->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5>Gastos:</h5>
+                            <p class="fw-bold text-danger fs-4" th:text="${totalExpenses} + ' Soles'">0.00 Soles</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5>Monto Total:</h5>
+                            <p class="fw-bold text-success fs-4" th:text="${remainingSavings} + ' Soles'">0.00 Soles</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a th:href="@{/money-out/new2}" class="btn btn-outline-dark btn-sm ms-3"><i class="fa-solid fa-right-to-bracket"></i> Agregar Nuevo Gasto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

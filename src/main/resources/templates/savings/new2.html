@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{savings/header::head}"></head>
+    <body>
+        <div th:insert="~{savings/header::header}"></div>
+        <div class="container mt-5">
+            <h1 class="burn">REGISTRAR GASTO</h1>
+            <form th:action="@{/money-out}" method="post">
+                <div class="form-floating mb-2">
+                    <input type="number" id="amount" name="amount" class="form-control" step="0.10" min="0" required>
+                    <label for="amount" class="form-label">Ingrese Monto</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" id="description" name="description" class="form-control" required>
+                    <label for="description" class="form-label">Ingrese Motivo</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" id="tipo" name="tipo" class="form-control" required>
+                    <label for="tipo" class="form-label">Ingrese 'Efectivo' - 'Yape' - 'Tarjeta'</label>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-outline-success px-4"><i class="fa-solid fa-right-to-bracket"></i> Guardar</button>
+                    <a th:href="@{/money-out}" class="btn btn-outline-dark btn-sm ms-3"><i class="fa-solid fa-rotate-right"></i></i> Volver</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

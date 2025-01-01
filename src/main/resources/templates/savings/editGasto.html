@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{savings/header::head}"></head>
+    <body>
+        <div th:insert="~{savings/header::header}"></div>
+        <div class="container mt-5">
+            <h1 class="burn">EDITAR GASTO</h1>
+            <form th:action="@{/money-out/update}" th:object="${expense}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="mb-2">
+                    <label for="amount" class="form-label">Monto</label>
+                    <input type="number" id="amount" name="amount" class="form-control" th:field="*{amount}" step="0.10" min="0" required>
+                </div>
+                <div class="mb-2">
+                    <label for="description" class="form-label">Motivo</label>
+                    <input type="text" id="description" name="description" class="form-control" th:field="*{description}" required>
+                </div>
+                <div class="mb-2">
+                    <label for="tipo" class="form-label">Tipo</label>
+                    <input type="text" id="tipo" name="tipo" class="form-control" th:field="*{tipo}" required>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-outline-success px-4"><i class="fa-solid fa-right-to-bracket"></i> Guardar Cambios</button>
+                    <a th:href="@{/money-out}" class="btn btn-outline-dark px-4 ms-3"><i class="fa-solid fa-rotate-right"></i> volver</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

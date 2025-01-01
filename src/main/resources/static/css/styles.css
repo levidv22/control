@@ -1,0 +1,84 @@
+body {
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h1 {
+    color: #5a5a5a;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-success {
+    background-color: #4caf50;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #45a049;
+}
+
+.btn-warning {
+    background-color: #ff9800;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e68a00;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #e03131;
+}
+
+.table thead {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.card {
+    border: none;
+    background-color: #e3f2fd;
+}
+
+.card-body h5 {
+    color: #5a5a5a;
+}
+
+
+/* Estilo personalizado para los inputs
+.form-control {
+    background-color: #f5f5dc;
+    border: 1px solid #d2b48c;
+    color: #4b3e2d;
+}
+.form-control:focus {
+    background-color: #f8f5e1;
+    border-color: #bfa07a;
+    box-shadow: 0 0 5px rgba(191, 160, 122, 0.5);
+}
+label {
+    color: #4b3e2d;
+}*/
+
+.burn {
+    background-image: url('/img/flame.gif');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}

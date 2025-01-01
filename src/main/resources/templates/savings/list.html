@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{savings/header::head}"></head>
+    <body>
+        <div th:insert="~{savings/header::header}"></div>
+        <div class="container mt-5">
+            <h1 class="burn">LISTADO DE AHORROS</h1>
+            <div class="row mt-4">
+                <div class="col-md-10">
+                    <form th:action="@{/savings}" method="get" class="mb-3">
+                        <select name="personId" class="form-select" onchange="this.form.submit()">
+                            <option value="">-- Seleccione una persona --</option>
+                            <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.nombre}" 
+                                    th:selected="${person.id == selectedPersonId}"></option>
+                        </select>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle" id="savingsTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <!--<th>Persona</th>-->
+                                    <th>Monto</th>
+                                    <th>Motivo</th>
+                                    <th>Tipo</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="saving : ${savings}">
+                                    <td th:text="${saving.id}"></td>
+                                    <!--<td th:text="${saving.person.nombre}"></td>-->
+                                    <td th:text="${saving.amount} + ' Soles'"></td>
+                                    <td th:text="${saving.motivo}"></td>
+                                    <td th:text="${saving.tipo}"></td>
+                                    <td th:text="${saving.formattedFecha}"></td>
+                                    <td>
+                                        <a th:href="@{'/savings/edit/' + ${saving.id}}" 
+                                           class="btn btn-outline-warning btn-sm">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                        <a th:href="@{'/savings/delete/' + ${saving.id}}" 
+                                           class="btn btn-outline-danger btn-sm" 
+                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este ahorro?');">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination Controls -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center" id="pagination">
+                            <!-- JavaScript will dynamically generate pagination controls here -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Total Ahorros:</h5>
+                            <p class="fw-bold fs-4 text-primary" th:text="${totalAmount + ' Soles'}">0.00 Soles</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-end">
+                        <a th:href="@{/savings/new}" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-right-to-bracket"></i> Agregar Nuevo Ahorro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
